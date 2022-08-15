@@ -18,18 +18,11 @@ public class Kata2 {
     public static List<Integer> execute() {
         List<Movie> movies = DataUtil.getMovies();
 
-        /*movies.stream()
-            .filter(movie -> movie.getRating() == 5.0)
-            .map(Movie::getId)
-            .collect(Collectors.toList())
-            .forEach(System.out::println);*/
+        List<Integer> filter = movies.stream()
+                .filter(movie -> movie.getRating() == 5.0)
+                .map(Movie::getId)
+                .collect(Collectors.toUnmodifiableList());
 
-        // return ImmutableList.of(1, 2, 3);
-        return ImmutableList.copyOf(
-                movies.stream()
-                        .filter(movie -> movie.getRating() == 5.0)
-                        .map(Movie::getId)
-                        .collect(Collectors.toList())
-        );
+        return filter;
     }
 }

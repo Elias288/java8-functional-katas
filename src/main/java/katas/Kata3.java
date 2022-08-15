@@ -18,20 +18,12 @@ public class Kata3 {
     public static List<Integer> execute() {
         List<MovieList> movieLists = DataUtil.getMovieLists();
 
-        /*movieLists.stream()
+        List<Integer> filter = movieLists.stream()
                 .map(MovieList::getVideos)
                 .flatMap(Collection::stream)
                 .map(Movie::getId)
-                .collect(Collectors.toList())
-                .forEach(System.out::println);*/
+                .collect(Collectors.toUnmodifiableList());
 
-        //return ImmutableList.of(1, 2, 3);
-        return ImmutableList.copyOf(
-                movieLists.stream()
-                        .map(MovieList::getVideos)
-                        .flatMap(Collection::stream)
-                        .map(Movie::getId)
-                        .collect(Collectors.toList())
-        );
+        return filter;
     }
 }

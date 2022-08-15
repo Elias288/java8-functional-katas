@@ -15,20 +15,13 @@ public class Kata6 {
     public static String execute() {
         List<Movie> movies = DataUtil.getMovies();
 
-        /*System.out.println(
-                movies.stream()
-                    .map(Movie::getBoxarts)
-                    .flatMap(Collection::stream)
-                    .reduce(((boxArts, boxArts2) -> boxArts.getWidth() > boxArts2.getWidth() && boxArts.getHeight() > boxArts2.getHeight() ? boxArts: boxArts2))
-                    .get()
-                    .getUrl()
-        );*/
-
-        return movies.stream()
+        String filter = movies.stream()
                 .map(Movie::getBoxarts)
                 .flatMap(Collection::stream)
                 .reduce(((boxArts, boxArts2) -> boxArts.getWidth() > boxArts2.getWidth() && boxArts.getHeight() > boxArts2.getHeight() ? boxArts: boxArts2))
                 .get()
                 .getUrl();
+
+        return filter;
     }
 }

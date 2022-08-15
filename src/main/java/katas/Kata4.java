@@ -21,35 +21,22 @@ public class Kata4 {
     public static List<Map> execute() {
         List<MovieList> movieLists = DataUtil.getMovieLists();
 
-        /*movieLists.stream()
+        List<Map> filter = movieLists.stream()
                 .map(MovieList::getVideos)
                 .flatMap(Collection::stream)
-                .filter(movie -> movie.getBoxarts().stream().anyMatch(b -> b.getWidth() == 150 && b.getHeight() == 200))
+                .filter(movie -> movie.getBoxarts()
+                        .stream()
+                        .anyMatch(b -> b.getWidth() == 150 && b.getHeight() == 200))
                 .map(movie -> ImmutableMap.of(
                         "id", movie.getId(),
                         "title", movie.getTitle(),
                         "boxart", movie.getBoxarts().stream()
-                                        .filter(b -> b.getWidth() == 150 && b.getHeight() == 200)
-                                        .findFirst()
-                                        .map(boxArt -> boxArt.getWidth() + ", " + boxArt.getHeight() + ", " + boxArt.getUrl())
+                                .filter(b -> b.getWidth() == 150 && b.getHeight() == 200)
+                                .findFirst()
+                                .map(boxArt -> boxArt.getWidth() + ", " + boxArt.getHeight() + ", " + boxArt.getUrl())
                 ))
-                .collect(Collectors.toList())
-                .forEach(System.out::println);*/
+                .collect(Collectors.toUnmodifiableList());
 
-        return ImmutableList.copyOf(
-                movieLists.stream()
-                        .map(MovieList::getVideos)
-                        .flatMap(Collection::stream)
-                        .filter(movie -> movie.getBoxarts().stream().anyMatch(b -> b.getWidth() == 150 && b.getHeight() == 200))
-                        .map(movie -> ImmutableMap.of(
-                                "id", movie.getId(),
-                                "title", movie.getTitle(),
-                                "boxart", movie.getBoxarts().stream()
-                                        .filter(b -> b.getWidth() == 150 && b.getHeight() == 200)
-                                        .findFirst()
-                                        .map(boxArt -> boxArt.getWidth() + ", " + boxArt.getHeight() + ", " + boxArt.getUrl())
-                        ))
-                        .collect(Collectors.toList())
-        );
+        return filter;
     }
 }
