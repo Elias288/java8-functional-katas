@@ -28,7 +28,7 @@ public class Kata7 {
                         "id", movie.getId(),
                         "title", movie.getTitle(),
                         "boxart", movie.getBoxarts().stream()
-                                .reduce(((boxArts, boxArts2) -> boxArts.getWidth() < boxArts2.getWidth() && boxArts.getHeight() < boxArts2.getHeight() ? boxArts: boxArts2))
+                                .reduce((boxArts, boxArts2) -> boxArts.getWidth() < boxArts2.getWidth() && boxArts.getHeight() < boxArts2.getHeight() ? boxArts: boxArts2)
                                 .get()
                                 .getUrl()
                 ))

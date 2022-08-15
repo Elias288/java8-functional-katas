@@ -29,7 +29,7 @@ public class Kata8 {
                                 "bookmarkId", b.getId()
                         )
                 )
-                .collect(Collectors.toList());
+                .collect(Collectors.toUnmodifiableList());
 
         return filter;
     }

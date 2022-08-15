@@ -41,8 +41,6 @@ public class Kata9 {
                 ))
                 .collect(Collectors.toUnmodifiableList());
 
-        System.out.println(filter);
-
         //return ImmutableList.of(ImmutableMap.of("id", 5, "title", "some title", "time", new Date(), "url", "someUrl"));
         return filter;
     }
